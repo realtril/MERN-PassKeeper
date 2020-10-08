@@ -1,7 +1,13 @@
 import React from 'react';
+import './Containers/Registration/Registration';
+import Registration from './Containers/Registration/Registration';
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <Registration />
+    </>
+  );
 }
 
 export default App;
