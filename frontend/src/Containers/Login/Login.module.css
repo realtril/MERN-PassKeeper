@@ -1,11 +1,20 @@
 @media (min-width: 320px) {
+  .login {
+    padding-top: 15vh;
+  }
+  .login__form_header {
+    text-align: center;
+  }
+  .login__form_have_account {
+    text-align: right;
+  }
   .login__illustration_pic {
     display: none;
   }
   .login__title {
     text-align: center;
-    font-size: 0.7rem;
-    margin: 0.6rem 0 0.6rem 0;
+    font-size: 1rem;
+    margin: 2rem 0;
   }
   .login_headers {
     position: static;
@@ -20,12 +29,9 @@
   }
   .login__form {
     display: block;
-    width: 90vw;
-    height: 75%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
-    margin-left: 5%;
   }
   .login__form_btn {
     display: block;
@@ -46,7 +52,7 @@
   }
   .login__main_title {
     padding-top: 0.2rem;
-    font-size: 1rem;
+    font-size: 2rem;
     text-align: center;
   }
   .login__form_login_transfer {
@@ -88,7 +94,6 @@
   .login__form {
     display: block;
     width: 38vw;
-    height: 95%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
@@ -122,7 +127,7 @@
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
   .login__illustration_pic {
     display: block;
     width: 550px;
@@ -147,14 +152,12 @@
   .login_headers {
     position: absolute;
     width: 500px;
-    top: 40px;
+    top: -59px;
     left: 12%;
   }
 
   .login__container {
     padding-top: 3rem;
-    height: 100vh;
-    width: 100vw;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -176,7 +179,6 @@
   .login__form {
     display: block;
     width: 28%;
-    height: 60%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;

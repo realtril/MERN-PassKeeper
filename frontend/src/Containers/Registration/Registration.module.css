@@ -1,14 +1,20 @@
 @media (min-width: 320px) {
+  .registration {
+    padding-top: 2vh;
+  }
   .register__illustration_pic {
     display: none;
   }
   .register__title {
     text-align: center;
-    font-size: 0.7rem;
-    margin: 0.6rem 0 0.6rem 0;
+    font-size: 1rem;
+    margin: 2rem 0;
   }
   .register_headers {
     position: static;
+  }
+  .register__form_header {
+    text-align: center;
   }
   .bg_wave {
     position: fixed;
@@ -20,12 +26,9 @@
   }
   .register__form {
     display: block;
-    width: 90vw;
-    height: 75%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
-    margin-left: 5%;
   }
   .register__form_btn {
     display: block;
@@ -45,13 +48,15 @@
     transition: 0.5s;
   }
   .register__main_title {
-    padding-top: 0.2rem;
-    font-size: 1rem;
+    font-size: 1.3rem;
     text-align: center;
   }
   .register__form_login_transfer {
     color: rgba(33, 36, 37, 0.7);
     cursor: pointer;
+  }
+  .register__form_have_account {
+    text-align: right;
   }
 }
 
@@ -88,11 +93,13 @@
   .register__form {
     display: block;
     width: 38vw;
-    height: 95%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
     margin-left: 5%;
+  }
+  .register__form_header {
+    text-align: center;
   }
   .register__form_btn {
     display: block;
@@ -122,7 +129,10 @@
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1024px) {
+  .registration {
+    padding-top: 0vh;
+  }
   .register__illustration_pic {
     display: block;
     width: 550px;
@@ -176,7 +186,6 @@
   .register__form {
     display: block;
     width: 28%;
-    height: 60%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
