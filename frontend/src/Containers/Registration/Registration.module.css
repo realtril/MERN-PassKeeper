@@ -88,7 +88,7 @@
   .register__form {
     display: block;
     width: 38vw;
-    height: 75%;
+    height: 95%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;
@@ -122,14 +122,16 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   .register__illustration_pic {
     display: block;
     width: 550px;
     height: 450px;
-    margin-left: 44px;
   }
-
+  .register__title {
+    text-align: left;
+    font-size: 1rem;
+  }
   .bg_wave {
     position: fixed;
     height: 100vh;
@@ -145,8 +147,8 @@
   .register_headers {
     position: absolute;
     width: 500px;
-    top: 50px;
-    left: 270px;
+    top: 40px;
+    left: 12%;
   }
 
   .register__container {
@@ -160,6 +162,7 @@
 
   .register__form_main_title {
     font-size: 30px;
+    text-align: left;
   }
   .register__form_header {
     text-align: center;
@@ -167,12 +170,13 @@
   }
   .register__main_title {
     font-size: 30px;
+    text-align: left;
   }
 
   .register__form {
     display: block;
-    width: 25%;
-    height: 55%;
+    width: 28%;
+    height: 60%;
     background-color: #fff;
     box-shadow: 1px 1px 20px 1px grey;
     padding: 15px;

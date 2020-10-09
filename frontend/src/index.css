@@ -2,6 +2,13 @@
 
 html {
   box-sizing: border-box;
+  background: linear-gradient(
+    to bottom,
+    rgba(41, 128, 185, 0.2),
+    rgba(109, 213, 250, 0.3),
+    rgba(255, 255, 255, 0.3)
+  );
+  overflow: hidden;
 }
 
 *,

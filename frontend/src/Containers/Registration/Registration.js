@@ -36,8 +36,8 @@ const Registration = () => {
             Join to PassKeeper. It's free and easy to use.
           </h5>
         </div>
+        <img className={css.bg_wave} src={bgWave} alt="bg-wave" />
       </div>
-      <img className={css.bg_wave} src={bgWave} alt="bg-wave" />
       <div className={css.register__container}>
         <div className={css.register__illustration}>
           <RegPic className={css.register__illustration_pic} />
