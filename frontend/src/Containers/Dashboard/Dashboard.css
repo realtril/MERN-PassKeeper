@@ -7,7 +7,12 @@
   margin-left: -250px;
   overflow-y: auto;
   border-right: 1px solid #4183d7;
-  background: linear-gradient(to bottom, #0cebeb, #20e3b2, #29ffc6);
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 235, 235),
+    rgba(32, 227, 178),
+    rgba(41, 255, 198)
+  );
 }
 .sidebar-nav {
   position: absolute;
@@ -110,7 +115,7 @@
   font-size: 1.2rem;
   outline: none;
   border: none;
-  background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+  background: #4183d7;
   color: #fff;
   font-family: 'Poppins', sans-serif;
   border-radius: 20px;

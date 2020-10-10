@@ -22,7 +22,7 @@ const Dashboard = () => {
             <div id="sidebar-wrapper">
                 <div className="profile-sidebar">
                     <div className="profile-userpic">
-                        <img src={Avatar} className="img-responsive" alt="" />
+                        <img src={Avatar} className="img-responsive" alt="avatar" />
                     </div>
                     <div className="profile-usertitle">
                         <h3 className="profile-usertitle-name">
