@@ -6,9 +6,9 @@
   height: 100%;
   margin-left: -250px;
   overflow-y: auto;
-  background: #000;
+  border-right: 1px solid #4183d7;
+  background: linear-gradient(to bottom, #0cebeb, #20e3b2, #29ffc6);
 }
-
 .sidebar-nav {
   position: absolute;
   top: 0;
@@ -46,15 +46,13 @@
     padding-left: 250px;
   }
   #sidebar-wrapper {
-    width: 250px;
+    width: 300px;
   }
   #page-content-wrapper {
     padding: 20px;
     position: relative;
   }
 }
-
-/* Profile container */
 
 .profile {
   margin: 20px 0;
@@ -65,19 +63,18 @@
 }
 
 .profile-userpic img {
-  margin: 0 auto;
-  position: relative;
+  transform: translate(73%, 0px);
   width: 120px;
   height: 120px;
-  overflow: hidden;
   border-radius: 50%;
   padding: 5px;
   background: #4183d7;
 }
 
 .profile-usertitle {
-  text-align: left;
+  text-align: center;
   margin-top: 20px;
+  overflow-wrap: break-word;
 }
 
 .profile-usertitle-name {
@@ -85,6 +82,7 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 7px;
+  text-align: center;
 }
 
 .profile-usertitle-job {
@@ -93,27 +91,32 @@
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 15px;
-  text-align: left;
+  text-align: center;
 }
 
 .profile-userbuttons {
-  text-align: left;
-  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .profile-userbuttons .btn {
-  text-transform: uppercase;
-  font-size: 13px;
-  font-weight: 700;
-  padding: 9px 20px;
-  margin-right: 5px;
-  margin-right: 0px;
-  text-align: center;
-  margin-top: 10px;
+  display: block;
+  vertical-align: middle;
+  margin: auto;
+  width: 70%;
+  height: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 20px;
+  transition: 0.5s;
 }
 
 .profile-userbuttons .btn:hover {
-  box-shadow: 0 0 5px #ff0000;
+  box-shadow: 0 0 5px #fff;
 }
-
-/*card*/

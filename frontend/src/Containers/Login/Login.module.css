@@ -50,6 +50,9 @@
     border-radius: 20px;
     transition: 0.5s;
   }
+  .login__form_btn:hover {
+    box-shadow: 0 0 5px #fff;
+  }
   .login__main_title {
     padding-top: 0.2rem;
     font-size: 2rem;

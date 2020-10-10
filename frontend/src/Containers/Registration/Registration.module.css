@@ -47,6 +47,9 @@
     border-radius: 20px;
     transition: 0.5s;
   }
+  .register__form_btn:hover {
+    box-shadow: 0 0 5px #fff;
+  }
   .register__main_title {
     font-size: 1.3rem;
     text-align: center;
