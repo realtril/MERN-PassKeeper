@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { NavLink } from 'react-router-dom';
 import { navigation } from '../../constants/navigation';
 import { ReactComponent as RegPic } from '../../icons/register.svg';
-import bgWave from '../../icons/wave.png';
 import { withStyles } from '@material-ui/core/styles';
-import 'normalize.css';
+import { registerOperation } from '../../Redux/operations/auth';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../../Components/Loader/Loader';
+import bgWave from '../../icons/wave.png';
 import css from './Registration.module.css';
+import 'normalize.css';
 
 const CssTextField = withStyles(() => ({
   root: {
@@ -25,10 +28,25 @@ const CssTextField = withStyles(() => ({
   },
 }))(TextField);
 
+const initialState = { name: '', email: '', password: '' };
+
 const Registration = () => {
+  const [form, setForm] = useState(initialState);
+  const dispatch = useDispatch();
+
+  const inputHandler = ({ target }) => {
+    const { name, value } = target;
+    setForm(state => ({ ...state, [name]: value }));
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    dispatch(registerOperation(form));
+  };
+
   return (
     <>
       <section className={css.registration}>
+        {false && <Loader />}
         <div className={css.register_wrapper}>
           <div className={css.register_headers}>
             <h2 className={css.register__main_title}>
@@ -44,25 +62,31 @@ const Registration = () => {
           <div className={css.register__illustration}>
             <RegPic className={css.register__illustration_pic} />
           </div>
-          <form className={css.register__form}>
+          <form className={css.register__form} onSubmit={onSubmit}>
             <h2 className={css.register__form_header}>Registration</h2>
             <CssTextField
               type="text"
               label="Username"
-              name="username"
+              name="name"
               required={true}
+              value={form.name}
+              onChange={inputHandler}
             />
             <CssTextField
               type="email"
               label="E-mail"
               name="email"
               required={true}
+              value={form.email}
+              onChange={inputHandler}
             />
             <CssTextField
               type="password"
               label="Password"
               name="password"
               required={true}
+              value={form.password}
+              onChange={inputHandler}
             />
             <button type="submit" className={css.register__form_btn}>
               Register

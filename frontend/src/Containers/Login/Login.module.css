@@ -1,6 +1,6 @@
 @media (min-width: 320px) {
   .login {
-    padding-top: 15vh;
+    padding-top: 13vh;
   }
   .login__form_header {
     text-align: center;
@@ -72,7 +72,7 @@
     height: 60vh;
     width: 100vw;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
   .login__title {
@@ -153,13 +153,13 @@
     position: absolute;
     width: 500px;
     top: -59px;
-    left: 12%;
+    left: 17.5%;
   }
 
   .login__container {
-    padding-top: 3rem;
+    padding-top: 2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
 
