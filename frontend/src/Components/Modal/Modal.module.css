@@ -1,0 +1,46 @@
+@keyframes animate {
+  0% {
+    box-shadow: 0 0 12px 4px #12d8fa;
+  }
+  25% {
+    box-shadow: 0 0 12px 4px #a6ffcb;
+  }
+  50% {
+    box-shadow: 0 0 12px 4px #12d8fa;
+  }
+  75% {
+    box-shadow: 0 0 12px 4px #a5fecb;
+  }
+  100% {
+    box-shadow: 0 0 12px 4px #a6ffcb;
+  }
+}
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 40px;
+  outline: none;
+  animation: animate 6s linear infinite alternate;
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__close {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}

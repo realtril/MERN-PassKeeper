@@ -64,6 +64,7 @@ export const getCurrentUser=()=>async (dispatch,getState)=>{
   magicToken.set(persistedToken);
   try {
   const res = await axios.get('/current');
+  console.log(res);
   dispatch(authActions.getCurrentUserSuccess(res.data))
   }
   catch(error){
