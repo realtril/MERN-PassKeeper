@@ -41,19 +41,17 @@ loaderOff()
 }
 };
 
-export const passwordDeleteOperation = () => async (dispatch,getState) => {
+export const passwordDeleteOperation = (_id) => async (dispatch,getState) => {
   dispatch(loaderOn());
-const {passwordId} = getState().passwords;
-    const {token}=getState().auth;
-    magicToken.set(token)
+const {token}=getState().auth;
+magicToken.set(token)
 try{
-await axios.delete(`/passwords/${passwordId}`)
-
-dispatch(passActions.passwordDeleteSuccess(passwordId))
+await axios.delete(`/passwords/${_id}`)
+dispatch(passActions.passwordDeleteSuccess(_id))
 }catch(error){
 dispatch(passActions.passwordDeleteError(error))
 }finally{
-    loaderOff()
+loaderOff()
 }
 };
 

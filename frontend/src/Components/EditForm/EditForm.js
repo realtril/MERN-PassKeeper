@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import cryptr from "cryptr";
+import {useSelector,useDispatch} from 'react-redux';
 import TitleField from './styleForInput';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import {passwordUpdateOperation} from '../../Redux/operations/passwordsOperation'
 import style from './EditForm.module.css';
 
-const initState = {
-  title: '',
-  password: '',
-};
-const EditForm = ({ onChangeItem, currentItemId, passwords }) => {
-  const [valueInput, setInputValue] = useState(initState);
+
+const EditForm = ({onToggleModal}) => {
+const {passwordId} = useSelector(state=>state.passwords)
+const {passwords}=useSelector(state=>state.passwords);
+const dispatch=useDispatch();
+
+  const [valueInput, setInputValue] = useState({name:"",password:""});
   const [showPassword, setShowPassword] = useState(false);
   const handleChangeValue = e => {
     const { name, value } = e.target;
@@ -26,28 +30,28 @@ const EditForm = ({ onChangeItem, currentItemId, passwords }) => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    onChangeItem(valueInput);
-    // setInputValue(initState);
+    dispatch(passwordUpdateOperation({...valueInput}))
+    onToggleModal();
   };
   useEffect(() => {
-    if (currentItemId) {
-      const currentItem = passwords.find(item => item._id === currentItemId);
+    if (passwordId) {
+      const currentItem = passwords.find(item => item._id === passwordId);
       if (!currentItem) {
         return;
       }
       setInputValue({
-        title: currentItem.title,
+        name: currentItem.name,
         password: currentItem.password,
       });
     }
-  }, [currentItemId]);
+  }, [passwordId]);
   return (
     <form className={style['password-form']} onSubmit={handleSubmit}>
       <TitleField
         id="input-with-icon-textfield"
         label="Name"
-        value={valueInput.title}
-        name="title"
+        value={valueInput.name}
+        name="name"
         onChange={handleChangeValue}
         type="text"
       />
@@ -72,7 +76,6 @@ const EditForm = ({ onChangeItem, currentItemId, passwords }) => {
           ),
         }}
       />
-
       <button className={style['password-form-btn']}>save</button>
     </form>
   );

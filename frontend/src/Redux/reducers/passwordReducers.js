@@ -8,8 +8,8 @@ const passwords = createReducer([], {
     state.filter((password) => password._id !== payload),
   [passActions.passwordsGetSuccess]: (_, {payload}) => {
     return  payload},
-[passActions.passwordChangeSuccess]:(state,{payload})=>state.map(password=>{
-    return password.id===payload.passwordId?({...password,...payload.updatedPassword}):(password)
+  [passActions.passwordChangeSuccess]:(state,{payload})=>state.map(password=>{
+    return password._id===payload.passwordId?({...password,...payload.updatedPassword}):(password)
 })
 });
 
@@ -20,9 +20,6 @@ const error = createReducer(null, {
   [passActions.passwordsGetError]: (_, { payload }) => payload,
 });
 
-const filter = createReducer("", {
-  [passActions.passwordsFilter]: (state, action) => action.payload,
-});
 
 const passwordId=createReducer("",{
 [passActions.passwordCurrentId]:(state,action)=>action.payload
@@ -30,7 +27,6 @@ const passwordId=createReducer("",{
 
 export default combineReducers({
   passwords,
-  filter,
   error,
   passwordId
 });

@@ -1,17 +1,21 @@
 import React from 'react';
 import style from './PasswordItem.module.css';
+import {useDispatch} from 'react-redux';
+import {passwordDeleteOperation} from '../../Redux/operations/passwordsOperation'
 const PasswordItem = ({
   name,
   onToggleLock,
   onToggleModal,
-  id,
-  onDeletePassword,
+  _id
 }) => {
-  const hadleDeleteItem = e => {
-    onDeletePassword(id);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteItem = () => {
+    dispatch(passwordDeleteOperation(_id));
   };
-  const handleOpenModal = e => {
-    onToggleModal(e, id);
+  const handleOpenModal = (e) => {
+    onToggleModal(e,_id);
   };
 
   return (
@@ -26,7 +30,7 @@ const PasswordItem = ({
         onClick={handleOpenModal}
       ></button>
       <button
-        onClick={hadleDeleteItem}
+        onClick={handleDeleteItem}
         className={style.password__delete}
       ></button>
     </li>

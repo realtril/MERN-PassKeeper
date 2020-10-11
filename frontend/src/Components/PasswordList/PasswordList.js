@@ -7,66 +7,64 @@ import passActions from "../../Redux/actions/passwordActions";
 import {useDispatch, useSelector} from 'react-redux';
 import style from './PasswordList.module.css';
 import animate from './PasswordAnimateItem.module.css';
-import {passwordDeleteOperation, passwordUpdateOperation,passwordGetOperation} from '../../Redux/operations/passwordsOperation'
+import {passwordGetOperation} from '../../Redux/operations/passwordsOperation'
 
 
 const PasswordList = () => {
   const [toggleLock, setToggleLock] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
-  const [currentItemId, setCurrentItemId] = useState(null);
-
+  const [filter,setFilter]=useState('')
   const dispatch = useDispatch();
   const passwords = useSelector(state => state.passwords.passwords)
   
 
-  const handleToggleModal = (e, currentOpenItemId) => {
+  const handleToggleModal = ( e,currentOpenItemId) => {
     if(currentOpenItemId){
     dispatch(passActions.passwordCurrentId(currentOpenItemId))
     }
     setToggleModal(state => !state);
   };
+  
   const handleToggleLock = () => {
     setToggleLock(state => !state);
   };
-  const deletePassword = idPassword => {
-    dispatch(passwordDeleteOperation(idPassword));
-  };
-  const changeItem = changedItem => {
-    dispatch(passwordUpdateOperation(changedItem))
-  };
+
+
   useEffect(() => {
     dispatch(passwordGetOperation())
   }, [])
 
+  const handleInput=({target})=>{
+    const { value } = target;
+    setFilter((value));
+  }
+
+  const getFilterPasswords=()=>{
+    return passwords.filter(data=>data.name.toLowerCase().includes(filter.toLowerCase()))
+  }
 
 
   return (
     <div className={style['password-wrapper']}>
       <label>
-        <input type="text" className={style.password__filter} />
+        <input type="text" className={style.password__filter} value={filter} onChange={handleInput}/>
       </label>
 
       <TransitionGroup component={'ul'} className={style['password__list']}>
-        {passwords.map((el, idx) => (
-          <CSSTransition key={el.id} timeout={250} classNames={animate}>
+        {getFilterPasswords().map((el) => (
+          <CSSTransition key={el._id} timeout={250} classNames={animate}>
             <PasswordItem
-              idx={idx}
-              key={el._id}
               onToggleModal={handleToggleModal}
               {...el}
               onToggleLock={handleToggleLock}
               isLock={toggleLock}
-              onDeletePassword={deletePassword}
             />
           </CSSTransition>
         ))}
       </TransitionGroup>
 
       <Modal isOpenModal={toggleModal} onToggleModal={handleToggleModal}>
-        <EditForm
-          onChangeItem={changeItem}
-          passwords={passwords}
-          currentItemId={currentItemId}
+        <EditForm onToggleModal={handleToggleModal}
         />
       </Modal>
     </div>
