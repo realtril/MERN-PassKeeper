@@ -1,4 +1,4 @@
-#sidebar-wrapper {
+.sidebar-wrapper {
   z-index: 1000;
   position: fixed;
   left: 250px;
@@ -7,7 +7,11 @@
   margin-left: -250px;
   overflow-y: auto;
   border-right: 1px solid #4183d7;
-  background: linear-gradient(to bottom, #0cebeb, #20e3b2, #29ffc6);
+  background: linear-gradient(
+    to top,
+    #8360c3,
+    #2ebf91
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .sidebar-nav {
   position: absolute;
@@ -45,15 +49,13 @@
   .wrapper {
     padding-left: 33%;
   }
-  #sidebar-wrapper {
+  .sidebar-wrapper {
     width: 30%;
   }
   #page-content-wrapper {
     /* padding-left: 500px; */
     padding: 20px;
     position: relative;
-  }
-  .profile-sidebar {
   }
 
   .profile {
@@ -78,10 +80,11 @@
     text-align: center;
     margin-top: 20px;
     overflow-wrap: break-word;
+    color: #fff;
   }
 
   .profile-usertitle-name {
-    color: #4183d7;
+    color: #fff;
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 7px;
@@ -90,7 +93,7 @@
 
   .profile-usertitle-job {
     text-transform: uppercase;
-    color: #4183d7;
+    color: #fff;
     font-size: 18px;
     font-weight: 600;
     margin-bottom: 15px;
@@ -113,7 +116,7 @@
     font-size: 1.2rem;
     outline: none;
     border: none;
-    background-image: linear-gradient(to right, #32be8f, #38d39f, #32be8f);
+    background-color: #4183d7;
     color: #fff;
     font-family: 'Poppins', sans-serif;
     border-radius: 20px;

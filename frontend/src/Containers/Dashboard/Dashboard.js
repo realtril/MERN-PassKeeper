@@ -1,25 +1,19 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect } from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../Redux/operations/auth';
 import Modal from '../../Components/Modal/Modal';
-import { withStyles } from '@material-ui/core/styles';
 import { getCurrentUser } from '../../Redux/operations/auth';
 import Avatar from '../../icons/undraw_male_avatar_323b.svg';
 import PasswordList from '../../Components/PasswordList/PasswordList';
+import Button from '../../Components/Button/Button'
 import '../Dashboard/Dashboard.css';
 
 const Dashboard = () => {
-  const [toggleModal,setToggleModal] = useState(false);
   const user = useSelector(state => state.auth.user);
   const dispatch = useDispatch();
   const onLogout = () => {
     dispatch(logOut());
-  };
-
-
-    const handleToggleModal = () => {
-    setToggleModal(state => !state);
   };
 
   useEffect(() => {
@@ -28,7 +22,7 @@ const Dashboard = () => {
 
   return (
     <div className="wrapper">
-      <div id="sidebar-wrapper">
+      <div className="sidebar-wrapper">
         <div className="profile-sidebar">
           <div className="profile-userpic">
             <img src={Avatar} className="img-responsive" alt="" />
@@ -56,17 +50,7 @@ const Dashboard = () => {
       <div className="page-content-wrapper">
         <PasswordList />
       </div>
-      <button className="fixed-button wobble"  type="button">
-          <AddCircleIcon
-           fontSize="50px"
-           style={{ color: 'white' }}/>
-        </button>
-        <Modal
-        isOpenModal={toggleModal}
-          onToggleModal={handleToggleModal}
-        >
-
-        </Modal>
+<Button/>
     </div>
   );
 };

@@ -1,31 +1,13 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
 import { NavLink } from 'react-router-dom';
 import { navigation } from '../../constants/navigation';
 import { useDispatch } from 'react-redux';
 import { ReactComponent as RegPic } from '../../icons/login.svg';
 import { logIn } from '../../Redux/operations/auth';
 import bgWave from '../../icons/wave.png';
-import { withStyles } from '@material-ui/core/styles';
 import 'normalize.css';
 import css from './Login.module.css';
-
-const CssTextField = withStyles(() => ({
-  root: {
-    width: '250px',
-    margin: '0 auto 38px',
-    '& label.Mui-focused': {
-      color: '#00BFA6',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#00BFA6',
-    },
-    '& .MuiFormLabel-root ': {
-      fontFamily: 'Poppins',
-    },
-    display: 'flex',
-  },
-}))(TextField);
+import CssTextField from './styleForInputs'
 
 const initialState = { email: '', password: '' };
 

@@ -1,32 +1,14 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
 import { NavLink } from 'react-router-dom';
 import { navigation } from '../../constants/navigation';
 import { ReactComponent as RegPic } from '../../icons/register.svg';
-import { withStyles } from '@material-ui/core/styles';
 import { registerOperation } from '../../Redux/operations/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../Components/Loader/Loader';
+import CssTextField from './styleForInputs'
 import bgWave from '../../icons/wave.png';
 import css from './Registration.module.css';
 import 'normalize.css';
-
-const CssTextField = withStyles(() => ({
-  root: {
-    width: '250px',
-    margin: '0 auto 40px',
-    '& label.Mui-focused': {
-      color: '#00BFA6',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#00BFA6',
-    },
-    '& .MuiFormLabel-root ': {
-      fontFamily: 'Poppins',
-    },
-    display: 'flex',
-  },
-}))(TextField);
 
 const initialState = { name: '', email: '', password: '' };
 
