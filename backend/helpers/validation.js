@@ -23,10 +23,10 @@ const loginValidation = (data) => {
 
 const passwordValidation = (data) => {
   const schema = Joi.object({
-    username: Joi.string().min(6).required(),
-    password: Joi.string().min(6).required(),
-    website: Joi.string().min(6).required(),
-    name: Joi.string(),
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+    website: Joi.string().required(),
+    name: Joi.string().required(),
   });
   return schema.validate(data);
 };

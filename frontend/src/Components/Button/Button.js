@@ -5,7 +5,6 @@ import Modal from '../Modal/Modal';
 import css from './Button.module.css'
 
 
-      // <div className={`${style['wave']} ${style['-two']}`}></div>
 const Button = () => {
     const [toggleModal,setToggleModal] = useState(false);
     const handleToggleModal = () => {

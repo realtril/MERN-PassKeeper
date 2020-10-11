@@ -64,7 +64,7 @@ const Login = () => {
               />
             </div>
             <button type="submit" className={css.login__form_btn}>
-              login
+              Log in
             </button>
             <p className={css.login__form_have_account}>
               No account yet?&#8192;

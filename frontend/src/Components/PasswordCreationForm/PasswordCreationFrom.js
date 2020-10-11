@@ -64,6 +64,7 @@ const submitHandler = e => {
                 name="name"
                 onChange={handleChangeValue}
                 required={true}
+                inputProps={{ maxLength: 11 }}
               />
             <button type="submit" className={style['password-form-btn']}>
               Save
