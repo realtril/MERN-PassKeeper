@@ -37,9 +37,15 @@ router.post("/register", async (req, res) => {
         new: true,
       }
     );
-    res.status(201).send({ userId: savedUser._id, token: token });
+    res.status(201).send({
+      user: {
+        email: savedUser.email,
+        name: savedUser.name,
+      },
+      token: token,
+    });
   } catch (err) {
-    res.status(400).send({ message: err });
+    res.status(400).send({ message: "User with such email is already exist." });
   }
 });
 
@@ -72,11 +78,10 @@ router.post("/login", async (req, res) => {
     .status(200)
     .send({
       user: {
-        userId: user._id,
-        name: user.name,
-        email: user.email,
-        token: token,
+        email: tokenedUser.email,
+        name: tokenedUser.name,
       },
+      token: token,
     });
 });
 
@@ -90,5 +95,20 @@ router.post("/logout", authorize, async (req, res) => {
     res.status(400).send({ message: error });
   }
 });
+
+router.get("/current", authorize, async (req, res) => {
+  try {
+    const user = req.user;
+    return res.status(200).send({
+      user:{
+      email: user.email,
+      name: user.name,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
 
 module.exports = router;

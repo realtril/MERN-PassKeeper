@@ -1,3 +1,6 @@
+.profile-userbuttons .btn:hover {
+  box-shadow: 0 0 5px #fff;
+}
 .fixed-button {
   cursor: pointer;
   background-color: #ff2434;

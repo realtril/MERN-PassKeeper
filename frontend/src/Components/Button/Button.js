@@ -1,8 +1,11 @@
 import React,{useState} from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import PasswordCreationForm from '../PasswordCreationForm/PasswordCreationFrom'
-import Modal from '../Modal/Modal'
+import Modal from '../Modal/Modal';
+import css from './Button.module.css'
 
+
+      // <div className={`${style['wave']} ${style['-two']}`}></div>
 const Button = () => {
     const [toggleModal,setToggleModal] = useState(false);
     const handleToggleModal = () => {
@@ -10,7 +13,7 @@ const Button = () => {
   };
     return (
         <>
-        <button className="fixed-button wobble"  type="button" onClick={handleToggleModal}>
+        <button className={`${css["fixed-button"]} ${css["wobble"]}`}  type="button" onClick={handleToggleModal}>
           <AddCircleIcon
            fontSize="large"
            style={{ color: 'white' }}/>

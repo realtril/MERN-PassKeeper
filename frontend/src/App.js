@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import Registration from './Containers/Registration/Registration';
 import { navigation } from './constants/navigation';
 import Login from './Containers/Login/Login';

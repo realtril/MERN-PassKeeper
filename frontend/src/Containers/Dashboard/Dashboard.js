@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../Redux/operations/auth';
-import Modal from '../../Components/Modal/Modal';
 import { getCurrentUser } from '../../Redux/operations/auth';
 import Avatar from '../../icons/undraw_male_avatar_323b.svg';
 import PasswordList from '../../Components/PasswordList/PasswordList';
 import Button from '../../Components/Button/Button'
-import '../Dashboard/Dashboard.css';
+import css from './Dashboard.module.css';
 
 const Dashboard = () => {
   const user = useSelector(state => state.auth.user);
@@ -20,25 +18,26 @@ const Dashboard = () => {
     dispatch(getCurrentUser());
   }, []);
 
+
   return (
-    <div className="wrapper">
-      <div className="sidebar-wrapper">
-        <div className="profile-sidebar">
-          <div className="profile-userpic">
-            <img src={Avatar} className="img-responsive" alt="" />
+    <div className={css["wrapper"]}>
+      <div className={css["sidebar-wrapper"]}>
+        <div className={css["profile-sidebar"]}>
+          <div className={css["profile-userpic"]}>
+            <img src={Avatar} className={css["img-responsive"]} alt="avatar" />
           </div>
-          <div className="profile-usertitle">
-            <h3 className="profile-usertitle-name">
+          <div className={css["profile-usertitle"]}>
+            <h3 className={css["profile-usertitle-name"]}>
               {user.name && user.name.toUpperCase()}
             </h3>
-            <h4 className="profile-usertitle-job">
+            <h4 className={css["profile-usertitle-job"]}>
               {user.email && user.email.toUpperCase()}
             </h4>
           </div>
-          <div className="profile-userbuttons">
+          <div className={css["profile-userbuttons"]}>
             <button
               type="button"
-              className="btn btn-danger btn-xs"
+              className={css["profile-logout-btn"]}
               onClick={onLogout}
             >
               Log Out
@@ -47,7 +46,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="page-content-wrapper">
+      <div className={css["page-content-wrapper"]}>
         <PasswordList />
       </div>
 <Button/>

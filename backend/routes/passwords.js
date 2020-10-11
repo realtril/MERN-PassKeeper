@@ -4,11 +4,10 @@ const router = Router();
 const Password = require("../model/Password");
 const { passwordValidation } = require("../helpers/validation");
 const Cryptr = require("cryptr");
-const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
+// const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
 
 //get all of the passwords
 router.get("/", authorize, async (req, res, next) => {
-  console.log(req);
   try {
     const userId = req.user._id;
     const passwords = await Password.find({ userId });
@@ -22,19 +21,16 @@ router.post("/", authorize, async (req, res) => {
   //validate the data before we make a user
   const { error } = passwordValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  console.log(req.body);
   const userId = req.user._id;
-
   const password = new Password({
     username: req.body.username,
-    password: cryptr.encrypt(req.body.password),
+    password: req.body.password,
     website: req.body.website,
     name: req.body.name,
     userId: userId,
   });
   try {
     const savedPassword = await password.save();
-    console.log(savedPassword);
     res.status(200).json(savedPassword);
   } catch (err) {
     res.json({ message: err });

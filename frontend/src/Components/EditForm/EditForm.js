@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import cryptr from "cryptr";
 import {useSelector,useDispatch} from 'react-redux';
 import TitleField from './styleForInput';
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -10,6 +9,7 @@ import style from './EditForm.module.css';
 
 
 const EditForm = ({onToggleModal}) => {
+
 const {passwordId} = useSelector(state=>state.passwords)
 const {passwords}=useSelector(state=>state.passwords);
 const dispatch=useDispatch();
@@ -34,6 +34,7 @@ const dispatch=useDispatch();
     onToggleModal();
   };
   useEffect(() => {
+
     if (passwordId) {
       const currentItem = passwords.find(item => item._id === passwordId);
       if (!currentItem) {

@@ -4,7 +4,6 @@ import {useDispatch} from 'react-redux';
 import {passwordDeleteOperation} from '../../Redux/operations/passwordsOperation'
 const PasswordItem = ({
   name,
-  onToggleLock,
   onToggleModal,
   _id
 }) => {
@@ -26,7 +25,6 @@ const PasswordItem = ({
       <p className={style['password__item-title']}>{name}</p>
       <button
         className={`${style['password__item-btn']} ${style['password__item-btn--lock']}`}
-        // onClick={onToggleLock}
         onClick={handleOpenModal}
       ></button>
       <button

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import ModalWrapper from 'react-modal';
 import style from './Modal.module.css';
