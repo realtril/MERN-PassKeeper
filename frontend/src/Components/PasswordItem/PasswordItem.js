@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './PasswordItem.module.css';
 const PasswordItem = ({
-  title,
+  name,
   onToggleLock,
   onToggleModal,
   id,
@@ -19,7 +19,7 @@ const PasswordItem = ({
       <div className={style['wave']}></div>
       <div className={`${style['wave']} ${style['-two']}`}></div>
       <div className={`${style['wave']} ${style['-three']}`}></div>
-      <p className={style['password__item-title']}>{title}</p>
+      <p className={style['password__item-title']}>{name}</p>
       <button
         className={`${style['password__item-btn']} ${style['password__item-btn--lock']}`}
         // onClick={onToggleLock}

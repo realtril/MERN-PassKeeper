@@ -31,8 +31,7 @@ const EditForm = ({ onChangeItem, currentItemId, passwords }) => {
   };
   useEffect(() => {
     if (currentItemId) {
-      const currentItem = passwords.find(item => item.id === currentItemId);
-      console.log(currentItem);
+      const currentItem = passwords.find(item => item._id === currentItemId);
       if (!currentItem) {
         return;
       }

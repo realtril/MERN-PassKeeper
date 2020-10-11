@@ -2,11 +2,22 @@ import axios from 'axios';
 import { loaderOff, loaderOn } from '../actions/loaderActions';
 import passActions from '../actions/passwordActions';
 
-export const passwordSetOperation = userData => async dispatch => {
+
+const magicToken = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    console.log('chimichango');
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
+export const passwordSetOperation = userData => async (dispatch,getState) => {
   try {
     dispatch(loaderOn());
+    const {token}=getState().auth;
+    magicToken.set(token)
     const result = await axios.post('/passwords', userData);
-    console.log(result.data);
     dispatch(passActions.passwordSetSuccess(result.data));
   } catch (error) {
     dispatch(passActions.passwordSetError(error));
@@ -15,10 +26,13 @@ export const passwordSetOperation = userData => async dispatch => {
   }
 };
 
-export const passwordGetOperation = () => async (dispatch) => {
+export const passwordGetOperation = () => async (dispatch,getState) => {
   dispatch(loaderOn());
 try{
+      const {token}=getState().auth;
+    magicToken.set(token)
     const res = await axios.get('/passwords');
+
     dispatch(passActions.passwordsGetSuccess(res.data))
 }catch(error){
 dispatch(passActions.passwordsGetError())
@@ -30,8 +44,11 @@ loaderOff()
 export const passwordDeleteOperation = () => async (dispatch,getState) => {
   dispatch(loaderOn());
 const {passwordId} = getState().passwords;
+    const {token}=getState().auth;
+    magicToken.set(token)
 try{
 await axios.delete(`/passwords/${passwordId}`)
+
 dispatch(passActions.passwordDeleteSuccess(passwordId))
 }catch(error){
 dispatch(passActions.passwordDeleteError(error))
@@ -43,6 +60,8 @@ dispatch(passActions.passwordDeleteError(error))
 export const passwordUpdateOperation = (updatedPassword)=>async(dispatch,getState)=>{
     dispatch(loaderOn())
     const {passwordId} = getState().passwords;
+    const {token}=getState().auth;
+    magicToken.set(token)
     try{
     const res = await axios.patch(`/passwords/${passwordId}`,{...updatedPassword})
     dispatch(passActions.passwordChangeSuccess({updatedPassword,passwordId}))

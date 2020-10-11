@@ -1,78 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import PasswordItem from '../PasswordItem/PasswordItem';
 import Modal from '../Modal/Modal';
 import EditForm from '../EditForm/EditForm';
 import passActions from "../../Redux/actions/passwordActions";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import style from './PasswordList.module.css';
 import animate from './PasswordAnimateItem.module.css';
-import {passwordUpdateOperation} from '../../Redux/operations/passwordsOperation'
+import {passwordDeleteOperation, passwordUpdateOperation,passwordGetOperation} from '../../Redux/operations/passwordsOperation'
 
-const initState = [
-  {
-    title: 'Facebook',
-    password: ' aqweqwe343',
-    id: 1,
-  },
-  {
-    title: 'Instagram',
-    password: ' aqweqwe343',
-    id: 2,
-  },
-  {
-    title: 'Vkontakte',
-    password: ' aqweqwe343',
-    id: 3,
-  },
-  {
-    title: 'YouTube',
-    password: ' aqweqwe343',
-    id: 4,
-  },
-  {
-    title: 'Twitter',
-    password: ' aqweqwe343',
-    id: 5,
-  },
-  {
-    title: 'Linkedin',
-    password: ' aqweqwe343',
-    id: 6,
-  },
-  {
-    title: 'Tinder',
-    password: ' aqweqwe343',
-    id: 7,
-  },
-  { title: 'Test', password: 'qweqwe', id: 8 },
-  { title: 'Test2', password: 'qweqwe', id: 9 },
-  { title: 'Test3', password: 'qweqwe', id: 10 },
-  { title: 'Test4', password: 'qweqwe', id: 11 },
-  { title: 'Test5', password: 'qweqwe', id: 12 },
-  { title: 'Test6', password: 'qweqwe', id: 13 },
-  { title: 'Test', password: 'qweqwe', id: 8 },
-  { title: 'Test2', password: 'qweqwe', id: 9 },
-  { title: 'Test3', password: 'qweqwe', id: 10 },
-  { title: 'Test4', password: 'qweqwe', id: 11 },
-  { title: 'Test5', password: 'qweqwe', id: 12 },
-  { title: 'Test6', password: 'qweqwe', id: 13 },
-  { title: 'Test6', password: 'qweqwe', id: 14 },
-  { title: 'Test5', password: 'qweqwe', id: 15 },
-  { title: 'Test6', password: 'qweqwe', id: 16 },
-  { title: 'Test6', password: 'qweqwe', id: 17 },
-  { title: 'Test5', password: 'qweqwe', id: 18 },
-  { title: 'Test6', password: 'qweqwe', id: 19 },
-  { title: 'Test6', password: 'qweqwe', id: 20 },
-];
 
 const PasswordList = () => {
   const [toggleLock, setToggleLock] = useState(false);
   const [toggleModal, setToggleModal] = useState(false);
-  const [passwords, setPasswords] = useState(initState);
   const [currentItemId, setCurrentItemId] = useState(null);
 
   const dispatch = useDispatch();
+  const passwords = useSelector(state => state.passwords.passwords)
+  
 
   const handleToggleModal = (e, currentOpenItemId) => {
     if(currentOpenItemId){
@@ -84,11 +29,16 @@ const PasswordList = () => {
     setToggleLock(state => !state);
   };
   const deletePassword = idPassword => {
-    setPasswords(state => state.filter(el => el.id !== idPassword));
+    dispatch(passwordDeleteOperation(idPassword));
   };
   const changeItem = changedItem => {
     dispatch(passwordUpdateOperation(changedItem))
   };
+  useEffect(() => {
+    dispatch(passwordGetOperation())
+  }, [])
+
+
 
   return (
     <div className={style['password-wrapper']}>
@@ -101,6 +51,7 @@ const PasswordList = () => {
           <CSSTransition key={el.id} timeout={250} classNames={animate}>
             <PasswordItem
               idx={idx}
+              key={el._id}
               onToggleModal={handleToggleModal}
               {...el}
               onToggleLock={handleToggleLock}
