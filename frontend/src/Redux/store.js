@@ -1,5 +1,6 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import authReducer from './reducers/authReducer';
+import passwordReducer from './reducers/passwordReducers'
 import storage from 'redux-persist/lib/storage';
 import loaderReducer from './reducers/loaderReducer';
 import {
@@ -23,6 +24,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     loader: loaderReducer,
+    passwords:passwordReducer,
   },
 
   middleware: getDefaultMiddleware({

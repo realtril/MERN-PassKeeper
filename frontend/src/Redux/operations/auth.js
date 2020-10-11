@@ -2,7 +2,7 @@ import axios from 'axios';
 import { loaderOff, loaderOn } from '../actions/loaderActions';
 import authActions from '../actions/authActions';
 
-axios.defaults.baseURL = 'https://pm-mern.herokuapp.com/api/user';
+axios.defaults.baseURL = 'https://pm-mern.herokuapp.com/api';
 
 const magicToken = {
   set(token) {
@@ -17,7 +17,7 @@ const magicToken = {
 export const registerOperation = userData => async dispatch => {
   try {
     dispatch(loaderOn());
-    const result = await axios.post('/register', userData);
+    const result = await axios.post('/user/register', userData);
     magicToken.set(result.data.token)
     dispatch(authActions.registerSuccess(result.data));
   } catch (error) {
@@ -30,7 +30,7 @@ export const registerOperation = userData => async dispatch => {
 export const logIn = userData => async dispatch => {
   try {
     dispatch(loaderOn());
-    const result = await axios.post('/login', userData);
+    const result = await axios.post('/user/login', userData);
     magicToken.set(result.data.token)
     dispatch(authActions.loginSuccess(result.data));
   } catch (error) {
@@ -44,7 +44,7 @@ export const logIn = userData => async dispatch => {
 export const logOut = () => async dispatch => {
   try{
     dispatch(loaderOn());
-    const result= await axios.post('/logout')
+    const result= await axios.post('/user/logout')
     magicToken.unset()
     dispatch(authActions.logoutSuccess())
   }catch(error){
@@ -63,7 +63,7 @@ export const getCurrentUser=()=>async (dispatch,getState)=>{
   dispatch(loaderOn())
   magicToken.set(persistedToken);
   try {
-  const res = await axios.get('/current');
+  const res = await axios.get('/user/current');
   dispatch(authActions.getCurrentUserSuccess(res.data))
   }
   catch(error){

@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import CssTextField from './styleForInputs';
 import style from './PasswordForm.module.css';
-import axios from 'axios';
+import {passwordSetOperation} from '../../Redux/operations/passwordsOperation';
 
 
 const initialState = { 
@@ -12,7 +12,8 @@ const initialState = {
     name:"",
  };
     
-const PasswordCreationFrom = () => {
+const PasswordCreationFrom = ({handleToggleModal}) => {
+const dispatch = useDispatch()
  const [valueInput, setInputValue] = useState(initialState);
     const handleChangeValue = ({target}) => {
     const { name, value } = target;
@@ -26,11 +27,8 @@ const PasswordCreationFrom = () => {
 
 const submitHandler = e => {
   e.preventDefault();
-  axios
-    .post("https://pm-mern.herokuapp.com/api/passwords", valueInput)
-    .then(res => {
-      console.log(res.data);
-    });
+  dispatch(passwordSetOperation(valueInput))
+  handleToggleModal();
 }
 
     return (

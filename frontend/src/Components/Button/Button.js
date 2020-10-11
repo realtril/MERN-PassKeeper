@@ -12,14 +12,14 @@ const Button = () => {
         <>
         <button className="fixed-button wobble"  type="button" onClick={handleToggleModal}>
           <AddCircleIcon
-           fontSize="50px"
+           fontSize="large"
            style={{ color: 'white' }}/>
         </button>
         <Modal
         isOpenModal={toggleModal}
         onToggleModal={handleToggleModal}
         >
-          <PasswordCreationForm/>
+          <PasswordCreationForm handleToggleModal={handleToggleModal}/>
         </Modal>
         </>
     );

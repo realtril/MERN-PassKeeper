@@ -3,8 +3,11 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import PasswordItem from '../PasswordItem/PasswordItem';
 import Modal from '../Modal/Modal';
 import EditForm from '../EditForm/EditForm';
+import passActions from "../../Redux/actions/passwordActions";
+import {useDispatch} from 'react-redux';
 import style from './PasswordList.module.css';
 import animate from './PasswordAnimateItem.module.css';
+import {passwordUpdateOperation} from '../../Redux/operations/passwordsOperation'
 
 const initState = [
   {
@@ -68,8 +71,13 @@ const PasswordList = () => {
   const [toggleModal, setToggleModal] = useState(false);
   const [passwords, setPasswords] = useState(initState);
   const [currentItemId, setCurrentItemId] = useState(null);
+
+  const dispatch = useDispatch();
+
   const handleToggleModal = (e, currentOpenItemId) => {
-    setCurrentItemId(currentOpenItemId);
+    if(currentOpenItemId){
+    dispatch(passActions.passwordCurrentId(currentOpenItemId))
+    }
     setToggleModal(state => !state);
   };
   const handleToggleLock = () => {
@@ -79,11 +87,7 @@ const PasswordList = () => {
     setPasswords(state => state.filter(el => el.id !== idPassword));
   };
   const changeItem = changedItem => {
-    setPasswords(state =>
-      state.map(el =>
-        el.id === currentItemId ? { ...el, ...changedItem } : el,
-      ),
-    );
+    dispatch(passwordUpdateOperation(changedItem))
   };
 
   return (
