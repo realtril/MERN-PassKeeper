@@ -8,4 +8,6 @@ To check an app out:
 
 Or simply just test the application using this link : https://mern-gbsfo-passkeeper.web.app/register .
 
-P.S: Code fixes are yet to come.
+UPDATES: 
+
+15.10.2020: Showing errors from backend on frontend ✅ 
