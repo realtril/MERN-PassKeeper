@@ -32,9 +32,9 @@ const EditForm = ({ onToggleModal }) => {
     onToggleModal();
   };
   useEffect(() => {
+    console.log('welcome from useeffect');
     if (passwordId) {
       const currentItem = passwords.find(item => item._id === passwordId);
-      console.log(currentItem);
       if (!currentItem) {
         return;
       }

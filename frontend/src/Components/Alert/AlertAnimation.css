@@ -1,0 +1,15 @@
+.AlertWrapper-enter {
+  opacity: 0.01;
+}
+
+.AlertWrapper-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.AlertWrapper-exit {
+  opacity: 1;
+}
+.AlertWrapper-exit-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}

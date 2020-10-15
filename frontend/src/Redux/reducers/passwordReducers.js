@@ -26,7 +26,6 @@ const error = createReducer(null, {
 
 const passwordId = createReducer('', {
   [passActions.passwordCurrentId]: (state, action) => {
-    console.log('vnutri reducer');
     return action.payload;
   },
 });

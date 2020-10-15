@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 import { navigation } from '../../constants/navigation';
+import AlertMessage from '../../Components/Alert/Alert';
 import { ReactComponent as RegPic } from '../../icons/register.svg';
 import { registerOperation } from '../../Redux/operations/auth';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +15,7 @@ import 'normalize.css';
 const initialState = { name: '', email: '', password: '' };
 
 const Registration = () => {
+  const error = useSelector(state => state.auth.error);
   const [form, setForm] = useState(initialState);
   const dispatch = useDispatch();
 
@@ -27,6 +30,19 @@ const Registration = () => {
 
   return (
     <>
+      <CSSTransition
+        in={error}
+        timeout={500}
+        classNames={{
+          enter: 'AlertWrapper-enter',
+          enterActive: 'AlertWrapper-enter-active',
+          exit: 'AlertWrapper-exit',
+          exitActive: 'AlertWrapper-exit-active',
+        }}
+        unmountOnExit
+      >
+        <AlertMessage error={error} />
+      </CSSTransition>
       <section className={css.registration}>
         {false && <Loader />}
         <div className={css.register_wrapper}>

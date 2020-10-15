@@ -9,7 +9,6 @@ const magicToken = {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
-    console.log('chimichango');
     axios.defaults.headers.common.Authorization = '';
   },
 };
@@ -18,10 +17,11 @@ export const registerOperation = userData => async dispatch => {
   try {
     dispatch(loaderOn());
     const result = await axios.post('/user/register', userData);
+    console.log(result);
     magicToken.set(result.data.token);
     dispatch(authActions.registerSuccess(result.data));
   } catch (error) {
-    dispatch(authActions.registerError(error));
+    dispatch(authActions.registerError(error.response.data));
   } finally {
     dispatch(loaderOff());
   }
@@ -34,7 +34,7 @@ export const logIn = userData => async dispatch => {
     magicToken.set(result.data.token);
     dispatch(authActions.loginSuccess(result.data));
   } catch (error) {
-    dispatch(authActions.loginError(error));
+    dispatch(authActions.loginError(error.response.data));
   } finally {
     dispatch(loaderOff());
   }
@@ -47,7 +47,7 @@ export const logOut = () => async dispatch => {
     magicToken.unset();
     dispatch(authActions.logoutSuccess());
   } catch (error) {
-    dispatch(authActions.logoutError(error));
+    dispatch(authActions.logoutError(error.response.data));
   }
 };
 
@@ -64,7 +64,7 @@ export const getCurrentUser = () => async (dispatch, getState) => {
     const res = await axios.get('/user/current');
     dispatch(authActions.getCurrentUserSuccess(res.data));
   } catch (error) {
-    authActions.getCurrentUserError(error);
+    authActions.getCurrentUserError(error.response.data);
   } finally {
     dispatch(loaderOff());
   }

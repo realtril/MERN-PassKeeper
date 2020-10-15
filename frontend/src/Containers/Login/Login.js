@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 import { navigation } from '../../constants/navigation';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { ReactComponent as RegPic } from '../../icons/login.svg';
 import { logIn } from '../../Redux/operations/auth';
+import AlertMessage from '../../Components/Alert/Alert';
+import '../../Components/Alert/AlertAnimation.css';
 import bgWave from '../../icons/wave.png';
 import 'normalize.css';
 import css from './Login.module.css';
@@ -14,6 +18,7 @@ const initialState = { email: '', password: '' };
 const Login = () => {
   const [form, setForm] = useState(initialState);
   const dispatch = useDispatch();
+  const error = useSelector(state => state.auth.error);
 
   const inputHandler = ({ target }) => {
     const { name, value } = target;
@@ -26,6 +31,19 @@ const Login = () => {
   };
   return (
     <>
+      <CSSTransition
+        in={error}
+        timeout={500}
+        classNames={{
+          enter: 'AlertWrapper-enter',
+          enterActive: 'AlertWrapper-enter-active',
+          exit: 'AlertWrapper-exit',
+          exitActive: 'AlertWrapper-exit-active',
+        }}
+        unmountOnExit
+      >
+        <AlertMessage error={error} />
+      </CSSTransition>
       <section className={css.login}>
         <div className={css.login_wrapper}>
           <div className={css.login_headers}>
