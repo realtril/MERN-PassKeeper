@@ -1,30 +1,28 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import PasswordCreationForm from '../PasswordCreationForm/PasswordCreationFrom'
+import PasswordCreationForm from '../PasswordCreationForm/PasswordCreationFrom';
 import Modal from '../Modal/Modal';
-import css from './Button.module.css'
-
+import css from './Button.module.css';
 
 const Button = () => {
-    const [toggleModal,setToggleModal] = useState(false);
-    const handleToggleModal = () => {
+  const [toggleModal, setToggleModal] = useState(false);
+  const handleToggleModal = () => {
     setToggleModal(state => !state);
   };
-    return (
-        <>
-        <button className={`${css["fixed-button"]} ${css["wobble"]}`}  type="button" onClick={handleToggleModal}>
-          <AddCircleIcon
-           fontSize="large"
-           style={{ color: 'white' }}/>
-        </button>
-        <Modal
-        isOpenModal={toggleModal}
-        onToggleModal={handleToggleModal}
-        >
-          <PasswordCreationForm handleToggleModal={handleToggleModal}/>
-        </Modal>
-        </>
-    );
+  return (
+    <>
+      <button
+        className={`${css['fixed-button']} ${css['wobble']}`}
+        type="button"
+        onClick={handleToggleModal}
+      >
+        <AddCircleIcon fontSize="large" style={{ color: 'white' }} />
+      </button>
+      <Modal isOpenModal={toggleModal} onToggleModal={handleToggleModal}>
+        <PasswordCreationForm handleToggleModal={handleToggleModal} />
+      </Modal>
+    </>
+  );
 };
 
 export default Button;

@@ -18,7 +18,7 @@ export const registerOperation = userData => async dispatch => {
   try {
     dispatch(loaderOn());
     const result = await axios.post('/user/register', userData);
-    magicToken.set(result.data.token)
+    magicToken.set(result.data.token);
     dispatch(authActions.registerSuccess(result.data));
   } catch (error) {
     dispatch(authActions.registerError(error));
@@ -31,7 +31,7 @@ export const logIn = userData => async dispatch => {
   try {
     dispatch(loaderOn());
     const result = await axios.post('/user/login', userData);
-    magicToken.set(result.data.token)
+    magicToken.set(result.data.token);
     dispatch(authActions.loginSuccess(result.data));
   } catch (error) {
     dispatch(authActions.loginError(error));
@@ -40,35 +40,32 @@ export const logIn = userData => async dispatch => {
   }
 };
 
-
 export const logOut = () => async dispatch => {
-  try{
+  try {
     dispatch(loaderOn());
-    const result= await axios.post('/user/logout')
-    magicToken.unset()
-    dispatch(authActions.logoutSuccess())
-  }catch(error){
-    dispatch(authActions.logoutError(error))
+    const result = await axios.post('/user/logout');
+    magicToken.unset();
+    dispatch(authActions.logoutSuccess());
+  } catch (error) {
+    dispatch(authActions.logoutError(error));
   }
 };
 
-
-export const getCurrentUser=()=>async (dispatch,getState)=>{
-    const {
+export const getCurrentUser = () => async (dispatch, getState) => {
+  const {
     auth: { token: persistedToken },
   } = getState();
-    if (!persistedToken) {
+  if (!persistedToken) {
     return;
   }
-  dispatch(loaderOn())
+  dispatch(loaderOn());
   magicToken.set(persistedToken);
   try {
-  const res = await axios.get('/user/current');
-  dispatch(authActions.getCurrentUserSuccess(res.data))
+    const res = await axios.get('/user/current');
+    dispatch(authActions.getCurrentUserSuccess(res.data));
+  } catch (error) {
+    authActions.getCurrentUserError(error);
+  } finally {
+    dispatch(loaderOff());
   }
-  catch(error){
-  authActions.getCurrentUserError(error)
-  }finally{
-  dispatch(loaderOff())
-  }
-}
+};

@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import {useSelector,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import TitleField from './styleForInput';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import {passwordUpdateOperation} from '../../Redux/operations/passwordsOperation'
+import { passwordUpdateOperation } from '../../Redux/operations/passwordsOperation';
 import style from './EditForm.module.css';
 
+const EditForm = ({ onToggleModal }) => {
+  const { passwordId } = useSelector(state => state.passwords);
+  const { passwords } = useSelector(state => state.passwords);
+  const dispatch = useDispatch();
 
-const EditForm = ({onToggleModal}) => {
-
-const {passwordId} = useSelector(state=>state.passwords)
-const {passwords}=useSelector(state=>state.passwords);
-const dispatch=useDispatch();
-
-  const [valueInput, setInputValue] = useState({name:"",password:""});
+  const [valueInput, setInputValue] = useState({ name: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const handleChangeValue = e => {
     const { name, value } = e.target;
@@ -30,13 +28,13 @@ const dispatch=useDispatch();
   };
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(passwordUpdateOperation({...valueInput}))
+    dispatch(passwordUpdateOperation({ ...valueInput }));
     onToggleModal();
   };
   useEffect(() => {
-
     if (passwordId) {
       const currentItem = passwords.find(item => item._id === passwordId);
+      console.log(currentItem);
       if (!currentItem) {
         return;
       }

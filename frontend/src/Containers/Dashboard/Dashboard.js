@@ -4,7 +4,7 @@ import { logOut } from '../../Redux/operations/auth';
 import { getCurrentUser } from '../../Redux/operations/auth';
 import Avatar from '../../icons/undraw_male_avatar_323b.svg';
 import PasswordList from '../../Components/PasswordList/PasswordList';
-import Button from '../../Components/Button/Button'
+import Button from '../../Components/Button/Button';
 import css from './Dashboard.module.css';
 
 const Dashboard = () => {
@@ -18,26 +18,25 @@ const Dashboard = () => {
     dispatch(getCurrentUser());
   }, []);
 
-
   return (
-    <div className={css["wrapper"]}>
-      <div className={css["sidebar-wrapper"]}>
-        <div className={css["profile-sidebar"]}>
-          <div className={css["profile-userpic"]}>
-            <img src={Avatar} className={css["img-responsive"]} alt="avatar" />
+    <div className={css['wrapper']}>
+      <div className={css['sidebar-wrapper']}>
+        <div className={css['profile-sidebar']}>
+          <div className={css['profile-userpic']}>
+            <img src={Avatar} className={css['img-responsive']} alt="avatar" />
           </div>
-          <div className={css["profile-usertitle"]}>
-            <h3 className={css["profile-usertitle-name"]}>
+          <div className={css['profile-usertitle']}>
+            <h3 className={css['profile-usertitle-name']}>
               {user.name && user.name.toUpperCase()}
             </h3>
-            <h4 className={css["profile-usertitle-job"]}>
+            <h4 className={css['profile-usertitle-job']}>
               {user.email && user.email.toUpperCase()}
             </h4>
           </div>
-          <div className={css["profile-userbuttons"]}>
+          <div className={css['profile-userbuttons']}>
             <button
               type="button"
-              className={css["profile-logout-btn"]}
+              className={css['profile-logout-btn']}
               onClick={onLogout}
             >
               Log Out
@@ -46,10 +45,10 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className={css["page-content-wrapper"]}>
+      <div className={css['page-content-wrapper']}>
         <PasswordList />
       </div>
-<Button/>
+      <Button />
     </div>
   );
 };

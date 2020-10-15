@@ -7,7 +7,7 @@ import { logIn } from '../../Redux/operations/auth';
 import bgWave from '../../icons/wave.png';
 import 'normalize.css';
 import css from './Login.module.css';
-import CssTextField from './styleForInputs'
+import CssTextField from './styleForInputs';
 
 const initialState = { email: '', password: '' };
 

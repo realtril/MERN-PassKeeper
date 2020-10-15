@@ -5,7 +5,7 @@ import { ReactComponent as RegPic } from '../../icons/register.svg';
 import { registerOperation } from '../../Redux/operations/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../../Components/Loader/Loader';
-import CssTextField from './styleForInputs'
+import CssTextField from './styleForInputs';
 import bgWave from '../../icons/wave.png';
 import css from './Registration.module.css';
 import 'normalize.css';
