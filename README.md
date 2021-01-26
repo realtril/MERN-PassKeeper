@@ -6,7 +6,8 @@ To check an app out:
 2) Open the folder with the copied repository and execute the command (npm i) to install npm packages. Initialize "npm i" in frontend & backend folders.
 3) Open a root directory, run the "npm run client" command to launch the application.
 
-Or simply just test the application using this link : https://mern-gbsfo-passkeeper.web.app/register .
+Or simply just test the application using this link : https://mern-gbsfo-passkeeper.firebaseapp.com/register
+ .
 
 UPDATES: 
 
